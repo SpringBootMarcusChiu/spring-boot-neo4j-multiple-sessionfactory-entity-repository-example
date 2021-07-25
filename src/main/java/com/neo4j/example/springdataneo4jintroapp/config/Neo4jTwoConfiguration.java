@@ -2,6 +2,7 @@ package com.neo4j.example.springdataneo4jintroapp.config;
 
 import org.neo4j.ogm.config.Configuration;
 import org.neo4j.ogm.session.SessionFactory;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.neo4j.repository.config.EnableNeo4jRepositories;
 import org.springframework.data.neo4j.transaction.Neo4jTransactionManager;
@@ -10,10 +11,11 @@ import org.springframework.data.neo4j.transaction.Neo4jTransactionManager;
         transactionManagerRef = "transactionManagerTwo",
         sessionFactoryRef = "sessionFactoryTwo",
         basePackages = "com.neo4j.example.springdataneo4jintroapp.repo.two")
+@EntityScan(basePackages = Neo4jTwoConfiguration.MODEL_PACKAGE)
 @org.springframework.context.annotation.Configuration
 public class Neo4jTwoConfiguration {
 
-    private static final String MODEL_PACKAGE = "com.neo4j.example.springdataneo4jintroapp.model.two";
+    protected static final String MODEL_PACKAGE = "com.neo4j.example.springdataneo4jintroapp.model.two";
 
     @Bean
     public Configuration configurationTwo() {
